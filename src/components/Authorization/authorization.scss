@@ -1,0 +1,8 @@
+.authorization {
+  display: flex;
+  justify-content: space-between;
+
+  &__section {
+    flex-basis: 40%;
+  }
+}

@@ -1,0 +1,10 @@
+.category-header {
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
+  & > a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

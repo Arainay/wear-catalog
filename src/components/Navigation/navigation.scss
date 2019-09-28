@@ -1,0 +1,36 @@
+.navigation {
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    &-item {
+      flex-shrink: 0;
+      margin-left: 2em;
+      text-align: center;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  &__logo {
+    margin-right: auto;
+
+    &-icon {
+      width: 32px;
+    }
+  }
+}

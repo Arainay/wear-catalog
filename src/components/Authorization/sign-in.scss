@@ -1,0 +1,21 @@
+$google-color: #4285f4;
+$google-hover-color: #357ae8;
+
+.sign-in {
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__google-button {
+    margin-left: 1em;
+    background-color: $google-color;
+    border-color: $google-color;
+
+    &:hover {
+      background-color: $google-hover-color;
+      border-color: $google-hover-color;
+      color: #fff;
+    }
+  }
+}
