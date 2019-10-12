@@ -29,7 +29,7 @@ export default class ApiService {
         }
 
         throw new Error(`${response.status}. ${response.statusText}`);
-      })
+      });
   }
 
   get(url = '', options = {}) {

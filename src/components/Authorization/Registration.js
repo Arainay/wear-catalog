@@ -5,18 +5,17 @@ import Form, { Button, Input } from '@app/components/Form';
 const Registration = ({ className }) => {
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(event.target);
   };
 
   return (
     <article className={classnames('registration', className)}>
       <header className="registration__header">
         <h2 className="registration__title">
-          I don't have an account
+          {"I don't have an account"}
         </h2>
         <span className="registration__description">
-                    Sign up with your email and password
-                </span>
+          Sign up with your email and password
+        </span>
       </header>
       <Form className="registration__form" onSubmit={handleSubmit}>
         <Input

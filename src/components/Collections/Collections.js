@@ -10,9 +10,6 @@ const Collections = () => {
     catalogService.getCollections()
       .then(data => {
         setCollections(data);
-      })
-      .catch(error => {
-        console.error(error);
       });
   }, []);
 

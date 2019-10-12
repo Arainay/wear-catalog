@@ -7,7 +7,6 @@ import './sign-in.scss';
 const SignIn = ({ className }) => {
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(event.target);
   };
 
   return (

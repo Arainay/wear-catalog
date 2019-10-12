@@ -18,6 +18,7 @@ const Category = ({ name, limit = null }) => {
         setProducts(data);
       })
       .catch(error => {
+        // eslint-disable-next-line no-console
         console.error(error);
       });
   }, []);

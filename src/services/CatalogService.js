@@ -4,7 +4,7 @@ export default class CatalogService extends ApiService {
   constructor() {
     super();
 
-    this.baseUrl = `${this.baseUrl}/catalog`
+    this.baseUrl = `${this.baseUrl}/catalog`;
   }
 
   getCatalog() {

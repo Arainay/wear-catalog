@@ -11,10 +11,7 @@ const MainCatalog = () => {
     catalogService.getCatalog()
       .then(data => {
         setCatalog(data);
-      })
-      .catch(error => {
-        console.error(error);
-      })
+      });
   }, []);
 
   return (

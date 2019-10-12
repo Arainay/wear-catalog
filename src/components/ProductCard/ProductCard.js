@@ -1,7 +1,7 @@
 import React from 'react';
 import './product-card.scss';
 
-const ProductCard = ({ id, imageUrl, name, price, ...props }) => {
+const ProductCard = ({ imageUrl, name, price, ...props }) => {
   const imageStyle = { backgroundImage: `url(${imageUrl})` };
 
   return (

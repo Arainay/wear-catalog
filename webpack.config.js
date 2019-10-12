@@ -17,7 +17,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: [/node_modules/, outputPath],
-        use: 'babel-loader'
+        use: ['babel-loader', 'eslint-loader']
       },
       {
         test: /\.scss$/,
