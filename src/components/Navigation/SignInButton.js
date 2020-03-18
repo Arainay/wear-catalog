@@ -11,10 +11,7 @@ const SignInButton = () => {
   } = useContext(CurrentUserContext);
 
   const signOut = () => {
-    auth.signOut().then(r => {
-      // eslint-disable-next-line no-console
-      console.log(r);
-    });
+    auth.signOut();
   };
 
   return (
