@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Form, { Button, Input } from '@app/components/Form';
-import { signInWithGoolge } from '../../firebase/firebase.utils';
+import { signInWithGoolge } from '@app/firebase/firebase.utils';
 import './sign-in.scss';
 
 const SignIn = ({ className }) => {
