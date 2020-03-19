@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '@app/firebase/firebase.utils';
+import createUserProfileDocument from './createUserProfileDocument';
 
 export const CurrentUserContext = createContext({});
 
@@ -7,7 +8,8 @@ const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+      await createUserProfileDocument(user);
       setCurrentUser(user);
     });
 
