@@ -9,8 +9,20 @@ const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-      await createUserProfileDocument(user);
-      setCurrentUser(user);
+      const userRef = await createUserProfileDocument(user);
+      if (!userRef) {
+        setCurrentUser(null);
+        return;
+      }
+
+      userRef.onSnapshot(snapshot => {
+        if (snapshot.exists) {
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data()
+          });
+        }
+      });
     });
 
     return function cleanup() {
