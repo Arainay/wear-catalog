@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { firestore } from '@app/firebase/firebase.utils';
 
 const createUserProfileDocument = async (user, additionalData) => {
@@ -21,7 +20,7 @@ const createUserProfileDocument = async (user, additionalData) => {
 				...additionalData
 			});
 		} catch (e) {
-			console.error(e);
+			// todo handle error
 		}
 	}
 
