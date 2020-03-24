@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { CurrentUserContext } from '@app/providers/CurrentUser';
-import { auth } from '../../firebase/firebase.utils';
+import { auth } from '@app/firebase/firebase.utils';
 
 const SignInButton = () => {
   const {
