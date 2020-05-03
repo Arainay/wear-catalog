@@ -2,30 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const HtmlCriticalWebpackPlugin = require("html-critical-webpack-plugin");
 const argv = require('yargs').argv;
 
 const outputPath = path.resolve(__dirname, './build');
-const isDevelopment = argv.mode === 'development';
-const isProduction = !isDevelopment;
-
-const critical = argv.critical ? [
-  new HtmlCriticalWebpackPlugin({
-    base: outputPath,
-    src: 'index.html',
-    dest: 'index.html',
-    inline: true,
-    minify: true,
-    extract: true,
-    width: 375,
-    height: 565,
-    penthouse: {
-      blockJSRequests: false,
-    }
-  })
-] : [];
+const isCompress = argv.compress;
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.js'),
@@ -35,23 +15,6 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: [/node_modules/, outputPath],
         use: ['babel-loader', 'eslint-loader']
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [
-                isProduction ? require('cssnano') : () => {},
-                require('autoprefixer')
-              ]
-            }
-          },
-          'sass-loader'
-        ]
       },
       {
         test: /\.svg$/,
@@ -73,7 +36,9 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10000
+              limit: 10000,
+              name: '[hash].[ext]',
+              outputPath: 'images'
             }
           },
           {
@@ -114,37 +79,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, './src/assets/index.html'),
       filename: 'index.html',
-      path: outputPath
-    }),
-    new MiniCssExtractPlugin({ filename: 'styles.css' }),
-    ...critical
+      path: outputPath,
+      jsExtension: isCompress ? '.gz' : ''
+    })
   ],
-  optimization: isProduction ? {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        parallel: true,
-        terserOptions: {
-          output: {
-            comments: false,
-          },
-        },
-        extractComments: false
-      })
-    ],
-    concatenateModules: true,
-    moduleIds: 'hashed',
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        }
-      }
-    }
-  } : {},
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
@@ -158,6 +96,7 @@ module.exports = {
     inline: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     https: false,
-    disableHostCheck: true
+    disableHostCheck: true,
+    compress: true
   }
 };
