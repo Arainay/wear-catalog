@@ -2,8 +2,8 @@
   "name": "wear-catalog",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dev-server --progress --color",
-    "build": "webpack --mode=production"
+    "start": "webpack-dev-server --progress --color --mode=production",
+    "build": "webpack --mode=production --critical"
   },
   "dependencies": {
     "@babel/runtime": "^7.9.2",
@@ -27,6 +27,7 @@
     "eslint": "^6.8.0",
     "eslint-loader": "^4.0.0",
     "eslint-plugin-react": "^7.19.0",
+    "html-critical-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^4.0.4",
     "image-webpack-loader": "^6.0.0",
     "mini-css-extract-plugin": "^0.9.0",

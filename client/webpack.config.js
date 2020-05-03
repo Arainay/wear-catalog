@@ -4,11 +4,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlCriticalWebpackPlugin = require("html-critical-webpack-plugin");
 const argv = require('yargs').argv;
 
 const outputPath = path.resolve(__dirname, './build');
 const isDevelopment = argv.mode === 'development';
 const isProduction = !isDevelopment;
+
+const critical = argv.critical ? [
+  new HtmlCriticalWebpackPlugin({
+    base: outputPath,
+    src: 'index.html',
+    dest: 'index.html',
+    inline: true,
+    minify: true,
+    extract: true,
+    width: 375,
+    height: 565,
+    penthouse: {
+      blockJSRequests: false,
+    }
+  })
+] : [];
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.js'),
@@ -99,7 +116,8 @@ module.exports = {
       filename: 'index.html',
       path: outputPath
     }),
-    new MiniCssExtractPlugin({ filename: 'styles.css' })
+    new MiniCssExtractPlugin({ filename: 'styles.css' }),
+    ...critical
   ],
   optimization: isProduction ? {
     minimize: true,
