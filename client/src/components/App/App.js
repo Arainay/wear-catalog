@@ -5,10 +5,10 @@ import Header from '@app/components/Header';
 import Content from '@app/components/Content';
 import './app.scss';
 
-const MainCatalog = lazy(() => import ('@app/components/MainCatalog'));
-const Collections = lazy(() => import ('@app/components/Collections'));
-const Category = lazy(() => import ('@app/components/Category'));
-const Authorization = lazy(() => import ('@app/components/Authorization'));
+const MainCatalog = lazy(() => import (/* webpackPrefetch: true */ '@app/components/MainCatalog'));
+const Collections = lazy(() => import (/* webpackPrefetch: true */ '@app/components/Collections'));
+const Category = lazy(() => import (/* webpackPrefetch: true */ '@app/components/Category'));
+const Authorization = lazy(() => import (/* webpackPrefetch: true */ '@app/components/Authorization'));
 
 const App = () => {
   const {
